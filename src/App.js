@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import Login from './Login';
+import Welcome from './Welcome';
+import './index.css';
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState(null);
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      {!user ? (
+        <Login setUser={setUser} />
+      ) : (
+        <Welcome user={user} handleLogout={handleLogout} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
